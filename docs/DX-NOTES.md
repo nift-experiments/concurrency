@@ -6,7 +6,7 @@ Nift pool source uses hardware_concurrency threads and has no public worker over
 
 - Queue implementation exposed parser limits: nested object/index reads and writes need intermediate bindings. A failure while holding a mutex can strand sibling threads during cleanup. Rejected local attempts retain this diagnostic; no core changes. Native user error codes require the `user.` namespace; checked and normalized only at the protocol boundary.
 
-- Held memory at 10k futures was about 13.7GiB locally, vs ~148MiB at 1k. Ordinary completed scheduler tasks did not hold this memory concurrently. Frozen official range must respect the 8GiB host; Nift 10k held cells unavailable, preserve diagnostic and show 100/1k growth. Need task environment/capture profiling, not native stack guesses.
+- Held memory at 10k futures was about 13,700MiB (about 13.4GiB) locally, vs ~148MiB at 1k. Ordinary completed scheduler tasks did not hold this memory concurrently. Frozen official range must respect the 8GiB host; Nift 10k held cells unavailable, preserve diagnostic and show 100/1k growth. Need task environment/capture profiling, not native stack guesses.
 
 - Python's process pool makes its CPU parallelism honest but adds process startup and value transfer. A thread-pool substitute would have been misleading for ordinary-GIL bytecode. Executor context managers make teardown straightforward; cancellation of a running process is not ordinary future cancellation.
 - JS needs explicit worker messaging and exit joining for CPU work; promise timers are far simpler for waiting. Bun's Node-compatible worker API keeps the equivalent adapter inspectable, with compatibility semantics stated. Promise queue is cooperative, not a shared-memory channel.
