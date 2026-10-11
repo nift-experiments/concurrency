@@ -11,6 +11,7 @@ def command(e):
  if e=='bun':return [str(R/'work/tools/bun-linux-x64/bun'),'adapters/js.mjs']
  return [str(R/'work/go-adapter')]
 def unsupported(e,c):
+ if e=='nift' and c['kind']=='memory' and c['n']==10000:return 'Outside practical 8GiB host range: local held checkpoint used 13700MiB; no official timing accepted'
  if e=='python' and c['kind']=='atomic':return 'No comparable public shared-memory atomic integer in ordinary CPython'
  if e in ['node','bun'] and c['kind']=='mutex':return 'No standard native mutex/protected-value primitive; no custom lock substituted'
  return None
