@@ -17,3 +17,4 @@ GOCACHE=/tmp/concurrency-go-cache work/tools/go/bin/go build -o work/go-adapter 
 cc -O2 -o work/helper adapters/helper.c
 python3 scripts/fixtures.py
 sha256sum work/tools/node.tar work/tools/go.tar work/tools/bun.zip > work/download-sha256.txt
+sha256sum -c docs/DOWNLOAD-SHA256.txt
