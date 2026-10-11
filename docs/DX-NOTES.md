@@ -14,3 +14,5 @@ Nift pool source uses hardware_concurrency threads and has no public worker over
 - Native Nift atomics and owner-checked mutex handles are clear sharing boundaries. Snapshot ordinary values avoid accidental implicit sharing but impose capture costs. Intermediates for nested object accesses are redundant parser ceremony, while join/await/lock ownership declarations carry useful semantics.
 
 - First cloud cohort rejected before completion: Nift schedule-1000 fresh stayed ~250ms, reused runtime grew from ~244ms to 8.8s by request20 while RSS rose9→29MiB. This is retained-runtime work registry growth, not merely host noise. Equal already-booted isolated request policy applies to all five runtimes; repeated-host behavior remains separate prominent diagnostic evidence.
+
+- Typed Nift bindings rejected replacing an atomic handle with a mutex handle. Separate construction branches made ownership/model explicit; that validation is useful semantics, not automatically bad ceremony. By contrast nested indexing intermediates carry no additional concurrency meaning.

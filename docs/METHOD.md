@@ -22,3 +22,9 @@ Atomics: Nift atomic<int>, Go sync/atomic, JS SharedArrayBuffer/Atomics. Python 
 Files: identical pregenerated 10000 × 128-byte corpus, exact byte read/hash; warm Linux cache expected, no cache-dropping claim or disk ranking. Process: identical C helper, argv invocation without shell, deterministic output/exits, same bounded four-job limit. Helper only controls child behavior; it performs none of the in-language computation.
 
 Failure workload collects all outcomes and lets siblings finish. This is all-settled semantics, not fail-fast structured cancellation. Nested futures/promises/goroutines are independently bounded by selected parent/child counts. Cancellation is a separate semantic probe and not pooled into timings.
+
+## Version selection
+
+The field samples five natural models rather than every available runtime. Nift is the exact source snapshot, not the older system executable. Node is the pinned LTS line; Bun supplies a second JS runtime; Go supplies the compiled concurrency reference. Python 3.14.4 was reproducibly available through pinned uv 0.13.0 as an ordinary-GIL portable build. This is not presented as the newest Python patch or a free-threaded comparison. Version/command/binary hashes and installer download identities remain explicit in the environment; no runtime was upgraded during measurement. Ruby was omitted to keep the comparison compact.
+
+For 1000 × 10ms waits, four blocking Nift async workers imply a 2500ms work/worker lower bound; suspended asyncio/JS/Go timers have a 10ms critical-path floor before scheduling/collection overhead. These are waiting semantics, not CPU parallelism.
