@@ -36,7 +36,7 @@
     "workers": 4,
     "iterations": 0,
     "extra": 0,
-    "samples": 50,
+    "samples": 5,
     "warmups": 2
   },
   {
@@ -76,7 +76,7 @@
     "workers": 4,
     "iterations": 8,
     "extra": 0,
-    "samples": 50,
+    "samples": 5,
     "warmups": 2
   },
   {
