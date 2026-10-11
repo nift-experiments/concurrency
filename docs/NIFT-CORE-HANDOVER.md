@@ -26,3 +26,8 @@ Recoverable `user.*` errors transfer through await, repeated await re-observes t
 Local syscall summary for 1000 scheduled tasks spends most cumulative traced syscall time in futex calls; readlink/path checks also recur thousands of times. Cumulative futex time includes waiting across threads and is not wall-time CPU attribution. Local perf access is restricted (`perf_event_paranoid=4`); the failed attempt is retained rather than weakening desktop policy. Cloud profiles, when available after the official run, are separate evidence.
 
 Numeric CPU work is in-language for all engines. Before claiming a global interpreter lock or blaming native stack memory, inspect accepted CPU scaling and profiles. This campaign does not establish either claim merely from slower arithmetic.
+
+## 6. Completed-future retention across requests
+The rejected first cloud cohort isolates a second issue: schedule-1000 fresh requests remained about250ms, whereas the same persistent parser grew from244ms to8782ms by request20; RSS rose9→29MiB. The work and worker policy were unchanged. This motivates inspecting growth of `async_instances_` and worker registry cloning after handles leave user scope. It does not prove a specific leak without an ownership audit.
+
+Accepted comparisons now use new, already-booted isolated request state for **all** participants; startup remains excluded from that boundary. They do not claim steady-state long-lived runtime throughput. Rejected repeated-request observations and a separate repeated-runtime probe stay visible. Core fix should reclaim unreachable completed-task bookkeeping without breaking repeated await on live handles, snapshot resource transfer or owned work cleanup.

@@ -130,6 +130,8 @@ def main():
        row=trial(e,c,workers[e][:2] if mode=='persistent' else None,timeout=60 if args.certify or args.pilot else 120)
        row.update(case=c['name'],engine=e,mode=mode,round=round,warmup=not(args.certify or args.pilot) and round<c['warmups'],workers=c['workers'],n=c['n'],iterations=c['iterations'],extra=c['extra'])
        f.write(json.dumps(row,separators=(',',':'))+'\n');f.flush();results.append(row)
+       if mode=='persistent':
+        p,reader,err=workers.pop(e);p.stdin.close();p.wait(timeout=10);err.close()
     finally:
      for p,reader,err in workers.values():
       if p.poll() is None:p.stdin.close();p.wait(timeout=10)
