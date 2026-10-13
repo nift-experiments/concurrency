@@ -53,6 +53,19 @@
     ],
     "peak_sampled_tree_rss_mib": 1541.92578125
   },
-  "held_probe_conclusion": "Exceeded conservative1536MiB guard before READY; incomplete capability diagnosis, not a new13.7GiB measurement or proof of8GiB infeasibility. Historical excluded cell remains outside primary; no supported extension certified.",
-  "receipt_directory": "/tmp/runtime-suite-refresh-certification/concurrency/work"
+  "held_probe_conclusion": "Candidate exceeded6144MiB process-tree RSS before READY, watchdog killed process group; censored lower bound, not proof of8GiB infeasibility. No10k held-task supported extension certified; historical matrix retained.",
+  "receipt_directory": "/tmp/runtime-suite-refresh-certification/concurrency/work",
+  "held_10000_bounded_probe_6gib": {
+    "case": "waiting-memory-10000",
+    "candidate": "7f7e487c47a87e871dfef53345e2b71288008bff",
+    "scope": "untimed bounded local capability diagnostic",
+    "rss_guard_mib": 6144,
+    "timeout_seconds": 90,
+    "pass_": false,
+    "error": "participant exited before complete response",
+    "guard": [
+      "RSS guard >6144MiB"
+    ],
+    "peak_sampled_tree_rss_mib": 6144.5625
+  }
 }
